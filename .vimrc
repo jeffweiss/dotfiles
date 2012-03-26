@@ -1,1 +1,3 @@
-/Users/jeff/.vimrc
+filetype plugin on
+filetype indent on
+syntax on
