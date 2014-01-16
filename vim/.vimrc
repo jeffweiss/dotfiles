@@ -18,6 +18,9 @@ let maplocalleader="\\"
 """"""" Ruby
 Plugin 'vim-ruby/vim-ruby'
 
+""""""" Elixir
+Plugin 'elixir-lang/vim-elixir'
+
 """"" Utilities ========================
 Plugin 'editorconfig/editorconfig-vim' " EditorConfig support
 
@@ -287,6 +290,14 @@ vnoremap / /\v
 
 """ Auto Commands ======================
 """"" Filetypes ========================
+augroup erlang
+  au!
+  au BufNewFile,BufRead *.erl setlocal tabstop=4
+  au BufNewFile,BufRead *.erl setlocal shiftwidth=4
+  au BufNewFile,BufRead *.erl setlocal softtabstop=4
+  au BufNewFile,BufRead relx.config setlocal filetype=erlang
+augroup END
+
 augroup dotenv
   au!
   au BufNewFile,BufRead *.envrc setlocal filetype=sh
