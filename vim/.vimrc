@@ -1,3 +1,20 @@
+" Table of Contents
+" 1) Vundle
+"   1.1) Filetypes
+"   1.2) Utilities
+"   1.3) UI Plugins
+"   1.4) Code Navigation
+" 2) UI Tweaks
+" 3) Keyboard shortcut Setup
+" 4) vim environment handling tweaks (needs work / renaming)
+" 5) File navigation
+" 6) Auto Commands
+"   6.1) Filetypes
+"   6.1) Normalization
+" 7) Project-Specific items
+" 8) nvim support
+" 9) New things I learn
+
 """ Setup Vundle =======================
 set nocompatible " required for Vundle
 filetype off     " required for Vundle
@@ -20,6 +37,45 @@ Plugin 'vim-ruby/vim-ruby'
 
 """"""" Elixir
 Plugin 'elixir-lang/vim-elixir'
+
+""""""" JavaScript
+Plugin 'claco/jasmine.vim'
+Plugin 'elzr/vim-json'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'mxw/vim-jsx'
+Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'Shutnik/jshint2.vim'
+Plugin 'burnettk/vim-angular'
+Plugin 'mtscout6/vim-cjsx'
+Plugin 'ElmCast/elm-vim'
+
+""""""" Web Development (HTML/CSS/preprocessors/etc)
+Plugin 'aaronjensen/vim-sass-status'
+Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'groenewege/vim-less'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'lukaszb/vim-web-indent'
+Plugin 'othree/html5.vim'
+Plugin 'tpope/vim-haml'
+Plugin 'slim-template/vim-slim'
+
+""""""" Markdown
+" Use fenced code blocks in markdown
+Plugin 'jtratner/vim-flavored-markdown'
+  let g:markdown_fenced_languages=['ruby', 'javascript', 'elixir', 'clojure', 'sh', 'html', 'sass', 'scss', 'haml', 'erlang']
+" Markdown is now included in vim, but by default .md is read as Modula-2
+" files.  This fixes that, because I don't ever edit Modula-2 files :)
+autocmd BufNewFile,BufReadPost *.md,*.markdown set filetype=markdown
+autocmd FileType markdown set tw=80
+
+""""""" CoffeeScript
+Plugin 'kchmck/vim-coffee-script'
+
+""""""" Handlebars
+Plugin 'nono/vim-handlebars'
+
+""""" End Filetypes ====================
 
 """"" Utilities ========================
 Plugin 'editorconfig/editorconfig-vim' " EditorConfig support
@@ -86,6 +142,46 @@ Plugin 'chriskempson/base16-vim' " base16 theme
 Plugin 'dandorman/vim-colors'
 Plugin 'roman/golden-ratio'
 """"" End UI Plugins ===================
+
+""""" Code Navigation ===============
+Plugin 'ctrlpvim/ctrlp.vim.git'
+  let g:ctrlp_match_window_bottom = 1    " Show at bottom of window
+  let g:ctrlp_working_path_mode = 'ra'   " Our working path is our VCS project or the current directory
+  let g:ctrlp_mru_files = 1              " Enable Most Recently Used files feature
+  let g:ctrlp_jump_to_buffer = 2         " Jump to tab AND buffer if already open
+  let g:ctrlp_open_new_file = 'r'        " open selections in a vertical split
+  let g:ctrlp_open_multiple_files = 'r' " opens multiple selections in vertical splits to the right
+  let g:ctrlp_arg_map = 0
+  let g:ctrlp_dotfiles = 0               " do not show (.) dotfiles in match list
+  let g:ctrlp_showhidden = 0             " do not show hidden files in match list
+  let g:ctrlp_split_window = 0
+  let g:ctrlp_max_height = 40            " restrict match list to a maxheight of 40
+  let g:ctrlp_use_caching = 0            " don't cache, we want new list immediately each time
+  let g:ctrlp_max_files = 0              " no restriction on results/file list
+  let g:ctrlp_working_path_mode = ''
+  let g:ctrlp_dont_split = 'NERD_tree_2' " don't split these buffers
+  let g:ctrlp_custom_ignore = {
+        \ 'dir':  '\v[\/]\.(git|hg|svn|gitkeep)$',
+        \ 'file': '\v\.(exe|so|dll|log|gif|jpg|jpeg|png|psd|DS_Store|ctags|gitattributes)$'
+        \ }
+  " let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+  " let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files --exclude-standard -co'] " if you want to use git for this rather than ag
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ctrlp_prompt_mappings = {
+        \ 'AcceptSelection("e")': ['<c-e>', '<c-space>'],
+        \ 'AcceptSelection("h")': ['<c-x>', '<c-cr>', '<c-s>'],
+        \ 'AcceptSelection("t")': ['<c-t>'],
+        \ 'AcceptSelection("r")': ['<cr>'],
+        \ 'PrtSelectMove("j")':   ['<c-j>', '<down>', '<s-tab>'],
+        \ 'PrtSelectMove("k")':   ['<c-k>', '<up>', '<tab>'],
+        \ 'PrtHistory(-1)':       ['<c-n>'],
+        \ 'PrtHistory(1)':        ['<c-p>'],
+        \ 'ToggleFocus()':        ['<c-tab>'],
+        \}
+
+Plugin 'tpope/vim-vinegar' " navigate up a directory with '-' in netrw, among other things
+Plugin 'ervandew/supertab'
+""""" End Code Navigation ===========
 
 call vundle#end() " required for Vundle
 
@@ -326,3 +422,7 @@ if has('nvim')
   set unnamedclip
 endif
 """ nvim support =======================
+
+""" New things I learn =================
+command TIL tabe~/Documents/TIL.md
+""" End New things I learn =============
