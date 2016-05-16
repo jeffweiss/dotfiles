@@ -38,6 +38,12 @@ Plugin 'vim-ruby/vim-ruby'
 """"""" Elixir
 Plugin 'elixir-lang/vim-elixir'
 
+""""""" Rust
+Plugin 'rust-lang/rust.vim'
+
+""""""" TOML
+Plugin 'cespare/vim-toml'
+
 """"""" JavaScript
 Plugin 'claco/jasmine.vim'
 Plugin 'elzr/vim-json'
@@ -68,6 +74,9 @@ Plugin 'jtratner/vim-flavored-markdown'
 " files.  This fixes that, because I don't ever edit Modula-2 files :)
 autocmd BufNewFile,BufReadPost *.md,*.markdown set filetype=markdown
 autocmd FileType markdown set tw=80
+
+""""""" Ansible
+Plugin 'chase/vim-ansible-yaml'
 
 """"""" CoffeeScript
 Plugin 'kchmck/vim-coffee-script'
