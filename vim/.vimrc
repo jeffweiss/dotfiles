@@ -44,6 +44,9 @@ Plugin 'rust-lang/rust.vim'
 """"""" TOML
 Plugin 'cespare/vim-toml'
 
+""""""" Elm
+Plugin 'lambdatoast/elm.vim'
+
 """"""" JavaScript
 Plugin 'claco/jasmine.vim'
 Plugin 'elzr/vim-json'
@@ -77,6 +80,9 @@ autocmd FileType markdown set tw=80
 
 """"""" Ansible
 Plugin 'chase/vim-ansible-yaml'
+
+""""""" Dockerfile
+Plugin 'ekalinin/Dockerfile.vim'
 
 """"""" CoffeeScript
 Plugin 'kchmck/vim-coffee-script'
