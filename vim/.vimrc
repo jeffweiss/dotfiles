@@ -441,3 +441,6 @@ endif
 """ New things I learn =================
 command TIL tabe~/Documents/TIL.md
 """ End New things I learn =============
+
+""" auto read file when entering buffer
+au FocusGained,BufEnter * :checktime
