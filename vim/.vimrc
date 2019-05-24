@@ -37,12 +37,7 @@ Plugin 'vim-ruby/vim-ruby'
 
 """"""" Elixir
 Plugin 'elixir-lang/vim-elixir'
-
-""""""" Rust
-Plugin 'rust-lang/rust.vim'
-
-""""""" TOML
-Plugin 'cespare/vim-toml'
+Plugin 'mhinz/vim-mix-format'
 
 """"""" Elm
 Plugin 'lambdatoast/elm.vim'
@@ -59,15 +54,7 @@ Plugin 'burnettk/vim-angular'
 Plugin 'mtscout6/vim-cjsx'
 Plugin 'ElmCast/elm-vim'
 
-""""""" Web Development (HTML/CSS/preprocessors/etc)
-Plugin 'aaronjensen/vim-sass-status'
-Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'groenewege/vim-less'
 Plugin 'hail2u/vim-css3-syntax'
-Plugin 'lukaszb/vim-web-indent'
-Plugin 'othree/html5.vim'
-Plugin 'tpope/vim-haml'
-Plugin 'slim-template/vim-slim'
 
 """"""" Markdown
 " Use fenced code blocks in markdown
@@ -78,17 +65,11 @@ Plugin 'jtratner/vim-flavored-markdown'
 autocmd BufNewFile,BufReadPost *.md,*.markdown set filetype=markdown
 autocmd FileType markdown set tw=80
 
-""""""" Ansible
-Plugin 'chase/vim-ansible-yaml'
+""""""" Go
+Plugin 'fatih/vim-go'
 
 """"""" Dockerfile
 Plugin 'ekalinin/Dockerfile.vim'
-
-""""""" CoffeeScript
-Plugin 'kchmck/vim-coffee-script'
-
-""""""" Handlebars
-Plugin 'nono/vim-handlebars'
 
 """"" End Filetypes ====================
 
@@ -102,7 +83,7 @@ Plugin 'tomtom/tcomment_vim'  " Line commenting
   " By default, `gc` will toggle comments
 
 Plugin 'janko-m/vim-test'                " Run tests with varying granularity
-  let g:test#filename_modifier = ':~'
+  let g:test#filename_modifier = ':.'
   nmap <silent> <leader>t :TestNearest<CR>
   nmap <silent> <leader>T :TestFile<CR>
   nmap <silent> <leader>a :TestSuite<CR>
@@ -444,3 +425,19 @@ command TIL tabe~/Documents/TIL.md
 
 """ auto read file when entering buffer
 au FocusGained,BufEnter * :checktime
+
+set bs=eol,indent,start
+"""""""""""""""""""""
+" vim-test extensions
+"""""""""""""""""""""
+function! ElixirUmbrellaTransform(cmd) abort
+  if match(a:cmd, 'apps/') != -1
+    return substitute(a:cmd, 'mix test apps/\([^/]*/\)', 'cd apps/\1 \&\& mix test ', '')
+  else
+    return a:cmd
+  end
+endfunction
+
+let g:test#preserve_screen = 0
+let g:test#custom_transformations = {'elixir_umbrella': function('ElixirUmbrellaTransform')}
+let g:test#transformation = 'elixir_umbrella'
