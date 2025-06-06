@@ -65,9 +65,6 @@ Plugin 'jtratner/vim-flavored-markdown'
 autocmd BufNewFile,BufReadPost *.md,*.markdown set filetype=markdown
 autocmd FileType markdown set tw=80
 
-""""""" Go
-Plugin 'fatih/vim-go'
-
 """"""" Dockerfile
 Plugin 'ekalinin/Dockerfile.vim'
 
@@ -136,7 +133,7 @@ Plugin 'vim-airline/vim-airline-themes' " UI statusbar niceties
         \ }
 Plugin 'chriskempson/base16-vim' " base16 theme
 Plugin 'dandorman/vim-colors'
-Plugin 'roman/golden-ratio'
+"Plugin 'roman/golden-ratio'
 """"" End UI Plugins ===================
 
 """"" Code Navigation ===============
@@ -441,3 +438,6 @@ endfunction
 let g:test#preserve_screen = 0
 let g:test#custom_transformations = {'elixir_umbrella': function('ElixirUmbrellaTransform')}
 let g:test#transformation = 'elixir_umbrella'
+au BufRead,BufNewFile *.ex,*.exs set filetype=elixir
+au BufRead,BufNewFile *.eex,*.heex,*.leex,*.sface,*.lexs set filetype=eelixir
+au BufRead,BufNewFile mix.lock set filetype=elixir
