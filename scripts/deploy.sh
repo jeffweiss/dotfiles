@@ -3,6 +3,9 @@
 #
 repo_dir=$HOME/.dotfiles
 
+# create local dir for applications
+mkdir -p $HOME/.local/bin $HOME/.local/share $HOME/.local/lib
+
 # set up oh-my-zsh rc and theme
 ln -sf $repo_dir/zsh/.zshrc $HOME/
 ln -sf $repo_dir/zsh/jeffweiss.zsh-theme $HOME/.oh-my-zsh/themes/

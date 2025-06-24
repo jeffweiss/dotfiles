@@ -98,13 +98,23 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export ERL_AFLAGS="-kernel shell_history enabled"
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-16.0.1.jdk/Contents/Home"
 
+
+GCLOUD_SDK_PATH="$HOME/Downloads/google-cloud-sdk"
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/Downloads/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/Downloads/google-cloud-sdk/path.zsh.inc"; fi
+if [ -f "$GCLOUD_SDK_PATH/path.zsh.inc" ]; then . "$GCLOUD_SDK_PATH/path.zsh.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f "$HOME/Downloads/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/Downloads/google-cloud-sdk/completion.zsh.inc"; fi
+if [ -f "$GCLOUD_SDK_PATH/completion.zsh.inc" ]; then . "$GCLOUD_SDK_PATH/completion.zsh.inc"; fi
 
+# put asdf shims at the beginning of the path
 export ASDF_DATA_DIR="$HOME/.asdf"
-export PATH="${ASDF_DATA_DIR}/shims:$PATH:$HOME/.local/bin:$HOME/bin:/Library/Frameworks/Python.framework/Versions/3.7/bin"
+export PATH="${ASDF_DATA_DIR}/shims:$HOME/.local/bin:$HOME/bin:$PATH"
+
+OS_NAME=$(uname -s)
+if [[ "$OS_NAME" == "Linux" ]]; then
+  # Linux specific zsh config
+elif [["$OS_NAME" == "Darwin" ]]; then
+  export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-16.0.1.jdk/Contents/Home"
+  export PATH="$PATH:/Library/Frameworks/Python.framework/Versions/3.7/bin"
+fi
