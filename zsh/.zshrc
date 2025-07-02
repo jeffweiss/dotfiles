@@ -115,6 +115,6 @@ OS_NAME=$(uname -s)
 if [[ "$OS_NAME" == "Linux" ]]; then
   # Linux specific zsh config
 elif [["$OS_NAME" == "Darwin" ]]; then
-  export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-16.0.1.jdk/Contents/Home"
-  export PATH="$PATH:/Library/Frameworks/Python.framework/Versions/3.7/bin"
+  # export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-16.0.1.jdk/Contents/Home"
+  # export PATH="$PATH:/Library/Frameworks/Python.framework/Versions/3.7/bin"
 fi

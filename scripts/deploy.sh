@@ -16,4 +16,12 @@ ln -sf $repo_dir/tmux/.tmux.conf $HOME/
 # set up vim config
 ln -sf $repo_dir/vim/.vimrc $HOME/
 mkdir -p $HOME/.vim/bundle
-git -C $HOME/.vim/bundle clone https://github.com/gmarik/Vundle.vim
+if [[ -z $HOME/.vim/bundle/Vundle.vim ]];  then
+  git -C $HOME/.vim/bundle clone https://github.com/gmarik/Vundle.vim
+fi
+
+# set up neovim config
+
+mkdir -p $HOME/.config/nvim/plugin
+ln -sf $repo_dir/nvim/init.lua $HOME/.config/nvim/
+ln -sf $repo_dir/nvim/plugin/floaterminal.lua $HOME/.config/nvim/plugin/
